@@ -2,7 +2,7 @@
 $host = "p47bof.h.filess.io";
 $user = "iextra_treatedgas";
 $pass = "7ca2cd44bd50079fb3fa99fe769b8062153bdce4";
-$db   = "db_lextra";
+$db   = "iextra_treatedgas";
 
 $koneksi = mysqli_init();
 
