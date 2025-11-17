@@ -2,6 +2,8 @@
 include 'koneksi.php';
 require('fpdf186/fpdf.php'); // pastikan kamu punya folder fpdf186
 
+$logo = __DIR__ . '/assets/lextra.png';
+
 $jaksa = $_POST['jaksa_peneliti'];
 
 // AMBIL DATA SESUAI FILTER
@@ -16,7 +18,7 @@ $pdf = new FPDF('L', 'mm', 'A4');
 $pdf->AddPage();
 
 // ===== HEADER LAPORAN =====
-$pdf->Image('/assets/lextra.png', 15, 10, 25, 25); // logo kiri atas
+$pdf->Image($logo, 15, 10, 25, 25); // logo kiri atas
 $pdf->SetFont('Arial', 'B', 16);
 $pdf->Cell(0, 10, 'LAW TIME TRACKER FOR KEJAKSAAN (LEXTRA)', 0, 1, 'C');
 $pdf->Ln(3);
