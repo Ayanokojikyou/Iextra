@@ -1,10 +1,5 @@
 <?php
-// koneksi database
-$koneksi = mysqli_connect("localhost", "root", "", "db_lextra");
-if (mysqli_connect_errno()) {
-  echo "Koneksi database gagal: " . mysqli_connect_error();
-  exit;
-}
+include 'koneksi.php';
 
 // proses simpan data
 if (isset($_POST['simpan'])) {
@@ -34,6 +29,7 @@ if (isset($_POST['simpan'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,23 +41,51 @@ if (isset($_POST['simpan'])) {
       background-color: #f8f9fa;
     }
 
-   /* Sidebar */
+    /* Sidebar */
     .sidebar {
-      position: fixed; top: 0; left: 0;
-      width: 230px; height: 100vh;
-      background-color: #6b0f1a; color: white;
-      display: flex; flex-direction: column; align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 230px;
+      height: 100vh;
+      background-color: #6b0f1a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding-top: 20px;
     }
-    .sidebar img { width: 100px; margin-bottom: 20px; }
-    .sidebar h2 { font-size: 18px; margin-bottom: 5px; }
-    .sidebar p { font-size: 10px; margin-bottom: 25px; }
-    .sidebar a {
-      display: block; width: 90%; padding: 10px 15px;
-      color: white; text-decoration: none;
-      border-radius: 8px; margin: 5px 0; font-size: 15px;
+
+    .sidebar img {
+      width: 100px;
+      margin-bottom: 20px;
     }
-    .sidebar a.active, .sidebar a:hover { background-color: #500c14; }
+
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar p {
+      font-size: 10px;
+      margin-bottom: 25px;
+    }
+
+    .sidebar a {
+      display: block;
+      width: 90%;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      margin: 5px 0;
+      font-size: 15px;
+    }
+
+    .sidebar a.active,
+    .sidebar a:hover {
+      background-color: #500c14;
+    }
 
     .main {
       margin-left: 230px;
@@ -121,6 +145,7 @@ if (isset($_POST['simpan'])) {
     }
   </style>
 </head>
+
 <body>
 
   <!-- SIDEBAR -->
@@ -203,4 +228,5 @@ if (isset($_POST['simpan'])) {
   </div>
 
 </body>
+
 </html>

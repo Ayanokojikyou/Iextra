@@ -1,10 +1,5 @@
 <?php
-// koneksi database
-$koneksi = mysqli_connect("localhost", "root", "", "db_lextra");
-if (mysqli_connect_errno()) {
-  echo "Koneksi database gagal: " . mysqli_connect_error();
-  exit;
-}
+include 'koneksi.php';
 
 // hapus data
 if (isset($_GET['hapus'])) {
@@ -26,6 +21,7 @@ if (isset($_GET['status']) && $_GET['status'] != "") {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,21 +35,49 @@ if (isset($_GET['status']) && $_GET['status'] != "") {
 
     /* Sidebar */
     .sidebar {
-      position: fixed; top: 0; left: 0;
-      width: 230px; height: 100vh;
-      background-color: #6b0f1a; color: white;
-      display: flex; flex-direction: column; align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 230px;
+      height: 100vh;
+      background-color: #6b0f1a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding-top: 20px;
     }
-    .sidebar img { width: 100px; margin-bottom: 20px; }
-    .sidebar h2 { font-size: 18px; margin-bottom: 5px; }
-    .sidebar p { font-size: 10px; margin-bottom: 25px; }
-    .sidebar a {
-      display: block; width: 90%; padding: 10px 15px;
-      color: white; text-decoration: none;
-      border-radius: 8px; margin: 5px 0; font-size: 15px;
+
+    .sidebar img {
+      width: 100px;
+      margin-bottom: 20px;
     }
-    .sidebar a.active, .sidebar a:hover { background-color: #500c14; }
+
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar p {
+      font-size: 10px;
+      margin-bottom: 25px;
+    }
+
+    .sidebar a {
+      display: block;
+      width: 90%;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      margin: 5px 0;
+      font-size: 15px;
+    }
+
+    .sidebar a.active,
+    .sidebar a:hover {
+      background-color: #500c14;
+    }
 
     /* Main */
     .main {
@@ -65,13 +89,14 @@ if (isset($_GET['status']) && $_GET['status'] != "") {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .header-top {
       text-align: center;
       margin-bottom: 15px;
     }
+
     .header-top h1 {
       color: #6b0f1a;
       font-weight: 700;
@@ -85,14 +110,17 @@ if (isset($_GET['status']) && $_GET['status'] != "") {
       margin: 20px 0;
     }
 
-    .btn-filter, .btn-export {
+    .btn-filter,
+    .btn-export {
       background-color: #6b0f1a;
       color: white;
       border: none;
       font-weight: 500;
       transition: 0.3s;
     }
-    .btn-filter:hover, .btn-export:hover {
+
+    .btn-filter:hover,
+    .btn-export:hover {
       background-color: #500c14;
       color: white;
     }
@@ -108,13 +136,26 @@ if (isset($_GET['status']) && $_GET['status'] != "") {
       margin-right: 10px;
       font-weight: 500;
     }
-    .edit-btn { color: #007bff; }
-    .hapus-btn { color: #dc3545; }
-    .edit-btn:hover, .hapus-btn:hover { text-decoration: underline; }
 
-    .search-box { margin-bottom: 20px; }
+    .edit-btn {
+      color: #007bff;
+    }
+
+    .hapus-btn {
+      color: #dc3545;
+    }
+
+    .edit-btn:hover,
+    .hapus-btn:hover {
+      text-decoration: underline;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- Sidebar -->
@@ -246,4 +287,5 @@ if (isset($_GET['status']) && $_GET['status'] != "") {
   </script>
 
 </body>
+
 </html>
