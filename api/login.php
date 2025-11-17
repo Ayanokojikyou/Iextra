@@ -25,6 +25,7 @@ if (isset($_POST['login'])) {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +39,8 @@ if (isset($_POST['login'])) {
     body {
       margin: 0;
       padding: 0;
-      background-color: #6b0f1a; /* warna maroon */
+      background-color: #6b0f1a;
+      /* warna maroon */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -116,11 +118,12 @@ if (isset($_POST['login'])) {
     }
   </style>
 </head>
+
 <body>
 
   <!-- Bagian Logo -->
   <div class="logo">
-    <img src="assets/lextra.png" alt="Logo Kejaksaan">
+    <img src="/assets/lextra.png" alt="Logo Kejaksaan">
   </div>
 
   <!-- Teks Judul -->
@@ -138,4 +141,5 @@ if (isset($_POST['login'])) {
   </form>
 
 </body>
+
 </html>
