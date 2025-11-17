@@ -3,10 +3,10 @@ session_start();
 include 'koneksi.php';
 
 if (isset($_POST['login'])) {
-  $email = $_POST['email'];
+  $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $query = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$email' OR nama='$email'");
+  $query = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username' OR nama='$username'");
   $data = mysqli_fetch_assoc($query);
 
   if ($data) {
@@ -135,7 +135,7 @@ if (isset($_POST['login'])) {
   <!-- Form Login -->
   <form class="login-container" method="POST">
     <?php if (!empty($error)) echo "<div class='error'>$error</div>"; ?>
-    <input type="text" name="email" placeholder="Email" required>
+    <input type="text" name="username" placeholder="username" required>
     <input type="password" name="password" placeholder="Password" required>
     <button type="submit" name="login">Masuk</button>
   </form>
