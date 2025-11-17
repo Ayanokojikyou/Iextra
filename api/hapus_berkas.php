@@ -14,4 +14,5 @@ if (mysqli_query($koneksi, $query)) {
 } else {
     echo "<script>alert('Gagal menghapus data.'); window.location='rekapitulasi.php';</script>";
 }
-?>
+
+mysqli_close($koneksi);

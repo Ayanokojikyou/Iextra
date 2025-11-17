@@ -70,3 +70,5 @@ $pdf->SetFont('Arial', 'I', 9);
 $pdf->Cell(0, 8, 'Dicetak otomatis oleh sistem LEXTRA pada tanggal: ' . date('d-m-Y H:i'), 0, 1, 'R');
 
 $pdf->Output('I', 'Rekap_Berkas_Lextra.pdf');
+
+mysqli_close($koneksi);

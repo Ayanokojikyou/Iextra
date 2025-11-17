@@ -336,3 +336,5 @@ mysqli_data_seek($notif, 0);
 </body>
 
 </html>
+
+<?php mysqli_close($koneksi); ?>

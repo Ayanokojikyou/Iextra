@@ -14,4 +14,5 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     echo "<script>alert('Username atau password salah'); window.location='login.php';</script>";
 }
-?>
+
+mysqli_close($koneksi);

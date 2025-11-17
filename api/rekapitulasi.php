@@ -289,3 +289,5 @@ if (isset($_GET['status']) && $_GET['status'] != "") {
 </body>
 
 </html>
+
+<?php mysqli_close($koneksi); ?>

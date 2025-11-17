@@ -230,3 +230,5 @@ if (isset($_POST['simpan'])) {
 </body>
 
 </html>
+
+<?php mysqli_close($koneksi); ?>

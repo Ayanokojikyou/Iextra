@@ -143,3 +143,5 @@ if (isset($_POST['login'])) {
 </body>
 
 </html>
+
+<?php mysqli_close($koneksi); ?>
