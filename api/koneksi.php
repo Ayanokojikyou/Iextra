@@ -18,7 +18,6 @@ if (!mysqli_real_connect(
     NULL,
     MYSQLI_CLIENT_SSL
 )) {
-    die("Koneksi GAGAL: " . mysqli_connect_error());
+    error_log("MYSQL ERROR: " . mysqli_connect_error());
+    die();
 }
-
-echo "Koneksi BERHASIL pakai SSL!";
