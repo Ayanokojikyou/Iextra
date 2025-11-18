@@ -19,7 +19,9 @@ if ($jaksa == "semua") {
 
 // BUAT DOKUMEN PDF
 $pdf = new FPDF('L', 'mm', 'A4');
+$pdf->SetAutoPageBreak(true, 15);   // WAJIB UNTUK VERCEL
 $pdf->AddPage();
+$pdf->SetY(20);                     // PAKSA POSISI AWAL (ANTI NUMPUK)
 
 // ===== HEADER LAPORAN =====
 
