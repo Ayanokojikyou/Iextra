@@ -21,13 +21,13 @@ $pdf->AddPage();
 
 // ===== HEADER LAPORAN =====
 $pdf->Image($logo, 15, 10, 25, 25); // logo kiri atas
-$pdf->SetFont('Arial', 'B', 16);
+$pdf->SetFont('Helvetica', 'B', 16);
 $pdf->Cell(0, 10, 'LAW TIME TRACKER FOR KEJAKSAAN (LEXTRA)', 0, 1, 'C');
 $pdf->Ln(3);
-$pdf->SetFont('Arial', 'B', 14);
+$pdf->SetFont('Helvetica', 'B', 14);
 $pdf->Cell(0, 8, 'REKAPITULASI BERKAS PENELITIAN', 0, 1, 'C');
 
-$pdf->SetFont('Arial', '', 12);
+$pdf->SetFont('Helvetica', '', 12);
 if ($jaksa != "semua") {
   $pdf->Cell(0, 8, "Jaksa Peneliti: $jaksa", 0, 1, 'C');
 } else {
@@ -41,7 +41,7 @@ $pdf->Line(10, $pdf->GetY(), 287, $pdf->GetY());
 $pdf->Ln(8);
 
 // ===== HEADER TABEL =====
-$pdf->SetFont('Arial', 'B', 10);
+$pdf->SetFont('Helvetica', 'B', 10);
 $pdf->SetFillColor(230, 230, 230);
 $pdf->Cell(10, 10, 'No', 1, 0, 'C', true);
 $pdf->Cell(35, 10, 'No Berkas', 1, 0, 'C', true);
@@ -53,7 +53,7 @@ $pdf->Cell(55, 10, 'Jaksa Peneliti', 1, 0, 'C', true);
 $pdf->Cell(35, 10, 'Tanggal Input', 1, 1, 'C', true);
 
 // ===== ISI TABEL =====
-$pdf->SetFont('Arial', '', 9);
+$pdf->SetFont('Helvetica', '', 9);
 $no = 1;
 while ($row = mysqli_fetch_assoc($query)) {
   $pdf->Cell(10, 8, $no++, 1, 0, 'C');
@@ -68,7 +68,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
 // ===== FOOTER LAPORAN =====
 $pdf->Ln(8);
-$pdf->SetFont('Arial', 'I', 9);
+$pdf->SetFont('Helvetica', 'I', 9);
 $pdf->Cell(0, 8, 'Dicetak otomatis oleh sistem LEXTRA pada tanggal: ' . date('d-m-Y H:i'), 0, 1, 'R');
 
 $pdf->Output('I', 'Rekap_Berkas_Lextra.pdf');
