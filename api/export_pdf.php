@@ -10,26 +10,44 @@ require __DIR__ . '/fpdf186/fpdf.php';
 
 $logo = __DIR__ . '/../assets/lextra.png';
 
-function MultiCellRow($pdf, $widths, $data, $height = 6)
+function RowEqualHeight($pdf, $widths, $data, $lineHeight = 5)
 {
-  $maxLines = 1;
+  // 1. Hitung jumlah baris terbesar
+  $maxLines = 0;
   foreach ($data as $i => $txt) {
-    $lineCount = $pdf->GetStringWidth($txt) / $widths[$i];
-    if ($lineCount > $maxLines) {
-      $maxLines = ceil($lineCount);
+    $textWidth = $pdf->GetStringWidth($txt);
+    $lines = ceil($textWidth / $widths[$i]);
+    if ($lines > $maxLines) {
+      $maxLines = $lines;
     }
   }
 
-  $rowHeight = $height * $maxLines;
+  $rowHeight = $maxLines * $lineHeight;
 
-  // draw cells
+  // 2. Simpan posisi Y saat awal baris
+  $startX = $pdf->GetX();
+  $startY = $pdf->GetY();
+
+  // 3. Gambar cell kosong dengan border
+  foreach ($widths as $i => $w) {
+    $pdf->Rect($startX, $startY, $w, $rowHeight);
+    $startX += $w;
+  }
+
+  // 4. Isi teks per kolom menggunakan MultiCell
+  $pdf->SetXY($pdf->GetX(), $startY);
+
   foreach ($data as $i => $txt) {
     $x = $pdf->GetX();
     $y = $pdf->GetY();
-    $pdf->MultiCell($widths[$i], $height, $txt, 1);
+
+    $pdf->MultiCell($widths[$i], $lineHeight, $txt, 0);
+
+    // Kembalikan ke kolom berikutnya (sejajar atas)
     $pdf->SetXY($x + $widths[$i], $y);
   }
 
+  // 5. Pindah ke baris selanjutnya
   $pdf->Ln($rowHeight);
 }
 
@@ -100,7 +118,7 @@ while ($row = mysqli_fetch_assoc($query)) {
   // $pdf->Cell(35, 8, $row['status'], 1, 0);
   // $pdf->Cell(55, 8, $row['jaksa_peneliti'], 1, 0);
   // $pdf->Cell(35, 8, $row['tanggal_input'], 1, 1);
-  MultiCellRow($pdf, $widths, [
+  RowEqualHeight($pdf, $widths, [
     $no++,
     $row['no_berkas'],
     $row['nama_berkas'],
