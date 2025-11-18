@@ -71,6 +71,14 @@ $pdf->Ln(8);
 $pdf->SetFont('Helvetica', 'I', 9);
 $pdf->Cell(0, 8, 'Dicetak otomatis oleh sistem LEXTRA pada tanggal: ' . date('d-m-Y H:i'), 0, 1, 'R');
 
-$pdf->Output('I', 'Rekap_Berkas_Lextra.pdf');
+// $pdf->Output('I', 'Rekap_Berkas_Lextra.pdf');
+
+ob_clean();
+header("Content-Type: application/pdf");
+header("Content-Disposition: inline; filename=Rekap_Berkas_Lextra.pdf");
+
+$pdf->Output('I');
+
+exit;
 
 mysqli_close($koneksi);
