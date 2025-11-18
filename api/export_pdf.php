@@ -10,6 +10,29 @@ require __DIR__ . '/fpdf186/fpdf.php';
 
 $logo = __DIR__ . '/../assets/lextra.png';
 
+function MultiCellRow($pdf, $widths, $data, $height = 6)
+{
+  $maxLines = 1;
+  foreach ($data as $i => $txt) {
+    $lineCount = $pdf->GetStringWidth($txt) / $widths[$i];
+    if ($lineCount > $maxLines) {
+      $maxLines = ceil($lineCount);
+    }
+  }
+
+  $rowHeight = $height * $maxLines;
+
+  // draw cells
+  foreach ($data as $i => $txt) {
+    $x = $pdf->GetX();
+    $y = $pdf->GetY();
+    $pdf->MultiCell($widths[$i], $height, $txt, 1);
+    $pdf->SetXY($x + $widths[$i], $y);
+  }
+
+  $pdf->Ln($rowHeight);
+}
+
 $jaksa = $_POST['jaksa_peneliti'];
 
 // AMBIL DATA SESUAI FILTER
@@ -64,17 +87,29 @@ $pdf->Cell(55, 10, 'Jaksa Peneliti', 1, 0, 'C', true);
 $pdf->Cell(35, 10, 'Tanggal Input', 1, 1, 'C', true);
 
 // ===== ISI TABEL =====
+$widths = [10, 35, 45, 30, 40, 35, 55, 35];
+
 $pdf->SetFont('Arial', '', 9);
 $no = 1;
 while ($row = mysqli_fetch_assoc($query)) {
-  $pdf->Cell(10, 8, $no++, 1, 0, 'C');
-  $pdf->Cell(35, 8, $row['no_berkas'], 1, 0);
-  $pdf->Cell(45, 8, $row['nama_berkas'], 1, 0);
-  $pdf->Cell(30, 8, $row['pasal'], 1, 0);
-  $pdf->Cell(40, 8, $row['nama_penyidik'], 1, 0);
-  $pdf->Cell(35, 8, $row['status'], 1, 0);
-  $pdf->Cell(55, 8, $row['jaksa_peneliti'], 1, 0);
-  $pdf->Cell(35, 8, $row['tanggal_input'], 1, 1);
+  // $pdf->Cell(10, 8, $no++, 1, 0, 'C');
+  // $pdf->Cell(35, 8, $row['no_berkas'], 1, 0);
+  // $pdf->Cell(45, 8, $row['nama_berkas'], 1, 0);
+  // $pdf->Cell(30, 8, $row['pasal'], 1, 0);
+  // $pdf->Cell(40, 8, $row['nama_penyidik'], 1, 0);
+  // $pdf->Cell(35, 8, $row['status'], 1, 0);
+  // $pdf->Cell(55, 8, $row['jaksa_peneliti'], 1, 0);
+  // $pdf->Cell(35, 8, $row['tanggal_input'], 1, 1);
+  MultiCellRow($pdf, $widths, [
+    $no++,
+    $row['no_berkas'],
+    $row['nama_berkas'],
+    $row['pasal'],
+    $row['nama_penyidik'],
+    $row['status'],
+    $row['jaksa_peneliti'],
+    $row['tanggal_input']
+  ]);
 }
 
 // ===== FOOTER LAPORAN =====
