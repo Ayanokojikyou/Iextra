@@ -1,6 +1,8 @@
 <?php
 include 'koneksi.php';
-require('fpdf186/fpdf.php'); // pastikan kamu punya folder fpdf186
+
+define('FPDF_FONTPATH', __DIR__ . '/fpdf186/font/');
+require __DIR__ . '/fpdf186/fpdf.php';
 
 $logo = __DIR__ . '/../assets/lextra.png';
 
